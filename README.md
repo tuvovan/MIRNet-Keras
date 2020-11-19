@@ -5,11 +5,6 @@ Learning Enriched Features for Real Image Restoration and Enhancement
 - [MIRNet](#MIRNet)
 - [Getting Started](#getting-tarted)
 - [Running](#running)
-    - [Image Denoising](#imagedenoising)
-
-    - [Image Super Resolution](#imagesuperresolution)
-
-    - [Image Enhancement](#imageenhancement)
 - [Result](#result)
 - [References](#references)
 - [Citations](#citation)
@@ -72,7 +67,7 @@ optional arguments:
                         --num_channels NUM_CHANNELS
 ```
 
-Download the weight [here]https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
+Download the weight [here] (https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_denoise.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
@@ -114,10 +109,10 @@ optional arguments:
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/tuvovan/MIRNet---Keras/blob/master/LICENSE) file for details
 
 ## References
-[1] Training dataset 
-    * [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
-    * [Image Super Resolution](#) ... Updating
-    * [Image Enhancement](#) ... Updating
+- Training dataset 
+    - [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
+    - [Image Super Resolution](#) ... Updating
+    - [Image Enhancement](#) ... Updating
 
 ## Citation
 ```
