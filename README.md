@@ -55,10 +55,11 @@ usage: train_denoise.py [-h] [--lr LR] [--gpu GPU]
                         [--checkpoint_ep CHECKPOINT_EP]
                         [--checkpoint_filepath CHECKPOINT_FILEPATH]
                         [--num_rrg NUM_RRG] [--num_mrb NUM_MRB]
+                        [--num_channels NUM_CHANNELS]
 ```
 ```
 optional arguments:
-                        -h, --help            show this help message and exit
+                        -h, --help show this help message and exit
                         --lr LR
                         --gpu GPU
                         --grad_clip_norm GRAD_CLIP_NORM
@@ -68,9 +69,10 @@ optional arguments:
                         --checkpoint_filepath CHECKPOINT_FILEPATH
                         --num_rrg NUM_RRG
                         --num_mrb NUM_MRB
+                        --num_channels NUM_CHANNELS
 ```
 
-Download the weight [here]https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise`` folder.
+Download the weight [here]https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_denoise.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
@@ -79,7 +81,7 @@ usage: test_denoise.py [-h] [--test_path TEST_PATH] [--gpu GPU]
 ```
 ```
 optional arguments:
-                        -h, --help            show this help message and exit
+                        -h, --help  show this help message and exit
                         --test_path TEST_PATH
                         --gpu GPU
                         --checkpoint_filepath CHECKPOINT_FILEPATH
@@ -96,9 +98,9 @@ optional arguments:
 ### Image Denoising
 
 | Input - Noisy | Output Denoised |
-| --- | --- | --- |
+| --- | --- |
 | ![](test/denoise/NOISY_SRGB_010.PNG) | ![](result/denoise/NOISY_SRGB_010.PNG)|
-| ![](test/denoise/NOISY_SRGB_010.PNG) | ![](result/denoise/NOISY_SRGB_020.PNG)|
+| ![](test/denoise/NOISY_SRGB_020.PNG) | ![](result/denoise/NOISY_SRGB_020.PNG)|
 
 
 ### Image Super Resolution
@@ -113,9 +115,9 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## References
 [1] Training dataset 
-    - [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
-    - [Image Super Resolution](#) ... Updating
-    - [Image Enhancement](#) ... Updating
+    * [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
+    * [Image Super Resolution](#) ... Updating
+    * [Image Enhancement](#) ... Updating
 
 ## Citation
 ```
