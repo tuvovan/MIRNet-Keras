@@ -87,7 +87,58 @@ optional arguments:
 ### Image Super Resolution
 ... Updating ...
 ### Image Enhancement
-... Updating ...
+#### Training
+- Get the dataset [here](https://drive.google.com/file/d/157bjO1_cFuSd0HWDUuAmcHRJDVyWpOxB/view)
+- Training 
+    ```
+    python train_delight.py
+    ```
+#### Testing
+- Test
+    ```
+    python test_delight.py
+    ```
+### Usage
+```
+usage: train_delight.py [-h] [--lr LR] [--gpu GPU]
+                        [--grad_clip_norm GRAD_CLIP_NORM]
+                        [--num_epochs NUM_EPOCHS]
+                        [--train_batch_size TRAIN_BATCH_SIZE]
+                        [--checkpoint_ep CHECKPOINT_EP]
+                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
+                        [--num_rrg NUM_RRG] [--num_mrb NUM_MRB] [--mode MODE]
+```
+```
+optional arguments:
+                        -h, --help            show this help message and exit
+                        --lr LR
+                        --gpu GPU
+                        --grad_clip_norm GRAD_CLIP_NORM
+                        --num_epochs NUM_EPOCHS
+                        --train_batch_size TRAIN_BATCH_SIZE
+                        --checkpoint_ep CHECKPOINT_EP
+                        --checkpoint_filepath CHECKPOINT_FILEPATH
+                        --num_rrg NUM_RRG
+                        --num_mrb NUM_MRB
+                        --mode MODE
+```
+
+Download the weight [here] (#) and put it to the ```weights/denoise``` folder.
+```
+usage: test_delight.py [-h] [--test_path TEST_PATH] [--gpu GPU]
+                       [--checkpoint_filepath CHECKPOINT_FILEPATH]
+                       [--num_rrg NUM_RRG] [--num_mrb NUM_MRB]
+                       [--num_channels NUM_CHANNELS]
+```
+```
+optional arguments:
+                        -h, --help            show this help message and exit
+                        --test_path TEST_PATH
+                        --gpu GPU
+                        --checkpoint_filepath CHECKPOINT_FILEPATH
+                        --num_rrg NUM_RRG
+                        --num_mrb NUM_MRB
+```
 
 ## Result
 ### Image Denoising
@@ -118,7 +169,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## References
 - Training dataset 
     - [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
-    - [Image Super Resolution](#) ... Updating
+    - [Image Super Resolution](https://drive.google.com/file/d/157bjO1_cFuSd0HWDUuAmcHRJDVyWpOxB/view)
     - [Image Enhancement](#) ... Updating
 
 ## Citation
