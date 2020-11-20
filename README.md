@@ -97,12 +97,16 @@ optional arguments:
 | ![](test/denoise/NOISY_SRGB_010.PNG) | ![](result/denoise/NOISY_SRGB_010.PNG)|
 | ![](test/denoise/NOISY_SRGB_020.PNG) | ![](result/denoise/NOISY_SRGB_020.PNG)|
 
+### Image Enhancement
+
+| Input - Lowlight | Output Delighted |
+| --- | --- |
+| ![](test/delight/1.png) | ![](result/delight/1.png)|
+| ![](test/delight/179.png) | ![](result/delight/179.png)|
 
 ### Image Super Resolution
 ... Updating ...
 
-### Image Enhancement
-... Updating ...
 
 ## License
 
