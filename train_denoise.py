@@ -32,13 +32,13 @@ def train(config):
     model = Model(inputs=x, outputs=out)
     model.summary()
 
-    early_stopping_callback = keras.callbacks.EarlyStopping(monitor="psnr_denoise", patience=10)
+    early_stopping_callback = keras.callbacks.EarlyStopping(monitor="val_psnr_denoise", patience=10, mode='max')
     checkpoint_filepath = config.checkpoint_filepath
 
     
     model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
         checkpoint_filepath + f'{{epoch:02d}}_{{psnr_denoise:.2f}}.h5',
-        monitor="psnr_denoise",
+        monitor="val_psnr_denoise",
         mode="max",
         save_best_only=True,
         period=1

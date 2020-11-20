@@ -35,7 +35,7 @@ def plot_results(img, prefix, title, mode):
         axins.imshow(img_array[::-1], origin="lower")
 
         # Specify the limits.
-        x1, x2, y1, y2 = 200, 500, 100, 400
+        x1, x2, y1, y2 = 200, 350, 100, 250
         # Apply the x-limits.
         axins.set_xlim(x1, x2)
         # Apply the y-limits.
@@ -82,9 +82,11 @@ def predict_images(model, img):
     return out_img
 
 class ESPCNCallback(keras.callbacks.Callback):
-    def __init__(self, test_img_paths):
+    def __init__(self, test_img_paths, mode, checkpoint_ep):
         super(ESPCNCallback, self).__init__()
-        self.test_img = get_lowres_image(load_img(test_img_paths[0]), mode='delight')
+        self.test_img = get_lowres_image(load_img(test_img_paths[0]), mode=mode)
+        self.mode = mode
+        self.checkpoint_ep = checkpoint_ep
 
     # Store PSNR value in each epoch.
     def on_epoch_begin(self, epoch, logs=None):
@@ -92,12 +94,12 @@ class ESPCNCallback(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):
         print("Mean PSNR for epoch: %.2f" % (np.mean(self.psnr)))
-        if (epoch + 1)  % 2 == 0:
+        if (epoch + 1)  % self.checkpoint_ep == 0:
             prediction = predict_images(self.model, self.test_img)
-            plot_results(prediction, "epoch-" + str(epoch), "prediction", mode='delight')
+            plot_results(prediction, "epoch-" + str(epoch), "prediction", mode=self.mode)
 
     def on_test_batch_end(self, batch, logs=None):
-        self.psnr.append(10 * math.log10(1 / logs["loss"]))
+        self.psnr.append(10 * math.log10(255.0 / logs["loss"]))
 
 
 class SSID:
@@ -129,7 +131,7 @@ class SSID:
             ds = ds.map(lambda lr, hr: random_crop(lr, hr), num_parallel_calls=AUTOTUNE)
             ds = ds.map(random_rotate, num_parallel_calls=AUTOTUNE)
             ds = ds.map(random_flip, num_parallel_calls=AUTOTUNE)
-            # ds = ds.map(scaling, num_parallel_calls=AUTOTUNE)
+            ds = ds.map(scaling, num_parallel_calls=AUTOTUNE)
         ds = ds.batch(batch_size)
         ds = ds.repeat(repeat_count)
         ds = ds.prefetch(buffer_size=AUTOTUNE)
@@ -188,7 +190,7 @@ class LOL:
             ds = ds.map(lambda lr, hr: random_crop(lr, hr), num_parallel_calls=AUTOTUNE)
             ds = ds.map(random_rotate, num_parallel_calls=AUTOTUNE)
             ds = ds.map(random_flip, num_parallel_calls=AUTOTUNE)
-            ds = ds.map(scaling, num_parallel_calls=AUTOTUNE)
+            # ds = ds.map(scaling, num_parallel_calls=AUTOTUNE)
         ds = ds.batch(batch_size)
         ds = ds.repeat(repeat_count)
         ds = ds.prefetch(buffer_size=AUTOTUNE)
@@ -267,39 +269,16 @@ def scaling(lr_img, hr_img):
 #  IO
 # -----------------------------------------------------------
 
-
-def evaluate(model, dataset):
-    psnr_values = []
-    for data in dataset:
-        lr = list(data)[0]
-        hr = list(data)[1]
-        lr = tf.image.resize(lr, (256, 256))
-        hr = tf.image.resize(hr, (512, 512))
-        sr = resolve(model, lr)
-        psnr_value = psnr(hr, sr)[0]
-        psnr_values.append(psnr_value)
-    return tf.reduce_mean(psnr_values)
-
-
-def resolve(model, lr_batch):
-    lr_batch = tf.cast(lr_batch, tf.float32)
-    sr_batch = model(lr_batch)
-    sr_batch = tf.clip_by_value(sr_batch, 0 ,255)
-    sr_batch = tf.round(sr_batch)
-    sr_batch = tf.cast(sr_batch, tf.uint8)
-
-    return sr_batch
-
-def psnr(img1, img2, max_value=255):
+def psnr_denoise(y_true, y_pred):
     """"Calculating peak signal-to-noise ratio (PSNR) between two images."""
-    mse = np.mean((np.array(img1, dtype=np.float32) - np.array(img2, dtype=np.float32)) ** 2)
-    if mse == 0:
-        return 100
-    return 20 * np.log10(max_value / (np.sqrt(mse)))
+    return tf.image.psnr(y_pred, y_true, max_val=1.0)
+
+def psnr_delight(y_true, y_pred):
+    """"Calculating peak signal-to-noise ratio (PSNR) between two images."""
+    return tf.image.psnr(y_pred, y_true, max_val=255.0)
 
 
 def custom_loss_function(y_true, y_pred):
     squared_difference = tf.square(y_true - y_pred) +  tf.square(1e-3)
     return tf.sqrt(tf.reduce_mean(squared_difference, axis=-1))
     
-

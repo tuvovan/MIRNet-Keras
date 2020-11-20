@@ -19,13 +19,13 @@ def run(config, model):
         lr = cv2.imread(fullname)
         ft = cv2.imread(fullname.replace('test', 'gt').replace('NOISY', 'GT'))
 
-        lr = np.array(get_lowres_image(PIL.Image.fromarray(lr)))
-        ft = np.array(get_lowres_image(PIL.Image.fromarray(ft)))
+        lr = np.array(get_lowres_image(PIL.Image.fromarray(lr), mode='denoise'))
+        ft = np.array(get_lowres_image(PIL.Image.fromarray(ft), mode='denoise'))
 
         lr = cv2.cvtColor(lr, cv2.COLOR_BGR2RGB)
         ft = cv2.cvtColor(ft, cv2.COLOR_BGR2RGB)
         out = predict_images(model, lr)
-        print(name, ' --- PSNR: ', psnr(ft, np.array(out)))
+        print(name, ' --- PSNR: ', psnr_denoise(ft, np.array(out)))
         cv2.imwrite(os.path.join(fullname.replace('test', 'result')), cv2.cvtColor(np.array(out), cv2.COLOR_BGR2RGB))
 
 if __name__ == "__main__":
@@ -48,6 +48,6 @@ if __name__ == "__main__":
     out = mri_x.main_model(x)
     model = Model(inputs=x, outputs=out)
     model.summary()
-    model.load_weights(config.checkpoint_filepath + 'MIR_denoise.h5')
+    model.load_weights(config.checkpoint_filepath + '47_36.24.h5')
 
     run(config, model)
