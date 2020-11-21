@@ -123,7 +123,7 @@ optional arguments:
                         --mode MODE
 ```
 
-Download the weight [here] (#) and put it to the ```weights/denoise``` folder.
+Download the weight [here](#) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_delight.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
