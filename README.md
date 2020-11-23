@@ -67,7 +67,7 @@ optional arguments:
                         --num_channels NUM_CHANNELS
 ```
 
-Download the weight [here] (https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
+Download the weight [here](https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_denoise.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
@@ -179,7 +179,7 @@ optional arguments:
                         --mode MODE
 ```
 
-Download the weight [here](#) and put it to the ```weights/denoise``` folder.
+Download the weight [here](#) and put it to the ```weights/delight``` folder.
 ```
 usage: test_delight.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
