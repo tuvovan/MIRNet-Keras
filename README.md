@@ -67,7 +67,7 @@ optional arguments:
                         --num_channels NUM_CHANNELS
 ```
 
-Download the weight [here](https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
+Download the weight [here] (https://drive.google.com/file/d/1iPMYhTSiXrFPK3Pvz1Sn6e2ZeDhYHeSw/view?usp=sharing) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_denoise.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
@@ -85,7 +85,63 @@ optional arguments:
                         --num_channels NUM_CHANNELS
 ```
 ### Image Super Resolution
-... Updating ...
+#### Training
+- Get the dataset [here](https://drive.google.com/file/d/17ZMjo-zwFouxnm_aFM6CUHBwgRrLZqIM/view)
+- Training 
+    ```
+    python train_super.py
+    ```
+#### Testing
+- Test
+    ```
+    python test_super.py
+    ```
+### Usage
+```
+usage: train_super.py [-h] [--lr LR] [--gpu GPU]
+                      [--grad_clip_norm GRAD_CLIP_NORM]
+                      [--num_epochs NUM_EPOCHS]
+                      [--train_batch_size TRAIN_BATCH_SIZE]
+                      [--checkpoint_ep CHECKPOINT_EP]
+                      [--checkpoint_filepath CHECKPOINT_FILEPATH]
+                      [--num_rrg NUM_RRG] [--num_mrb NUM_MRB] [--mode MODE]
+                      [--scale_factor SCALE_FACTOR]
+```
+```
+optional arguments:
+                    -h, --help            show this help message and exit
+                    --lr LR
+                    --gpu GPU
+                    --grad_clip_norm GRAD_CLIP_NORM
+                    --num_epochs NUM_EPOCHS
+                    --train_batch_size TRAIN_BATCH_SIZE
+                    --checkpoint_ep CHECKPOINT_EP
+                    --checkpoint_filepath CHECKPOINT_FILEPATH
+                    --num_rrg NUM_RRG
+                    --num_mrb NUM_MRB
+                    --mode MODE
+                    --scale_factor SCALE_FACTOR
+```
+
+Download the weight [here](#) and put it to the ```weights/super``` folder.
+```
+usage: test_super.py [-h] [--test_path TEST_PATH] [--gpu GPU]
+                     [--checkpoint_filepath CHECKPOINT_FILEPATH]
+                     [--num_rrg NUM_RRG] [--num_mrb NUM_MRB]
+                     [--num_channels NUM_CHANNELS]
+                     [--scale_factor SCALE_FACTOR]
+```
+```
+optional arguments:
+                    -h, --help            show this help message and exit
+                    --test_path TEST_PATH
+                    --gpu GPU
+                    --checkpoint_filepath CHECKPOINT_FILEPATH
+                    --num_rrg NUM_RRG
+                    --num_mrb NUM_MRB
+                    --num_channels NUM_CHANNELS
+                    --scale_factor SCALE_FACTOR
+```
 ### Image Enhancement
 #### Training
 - Get the dataset [here](https://drive.google.com/file/d/157bjO1_cFuSd0HWDUuAmcHRJDVyWpOxB/view)
@@ -123,7 +179,7 @@ optional arguments:
                         --mode MODE
 ```
 
-Download the weight [here](https://drive.google.com/file/d/1fdIR9vXLJW2s7o-aHgk67HSAAL4LHOXm/view?usp=sharing) and put it to the ```weights/delight``` folder.
+Download the weight [here](#) and put it to the ```weights/denoise``` folder.
 ```
 usage: test_delight.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                        [--checkpoint_filepath CHECKPOINT_FILEPATH]
@@ -159,7 +215,10 @@ optional arguments:
 | ![](test/delight/493.png) | ![](result/delight/493.png)|
 
 ### Image Super Resolution
-... Updating ...
+| Input - LowRes | Output Bicubic | Output HighRes |
+| --- | --- | --- |
+| ![](test/super/Canon_005_LR3.png) | ![](result/super/Canon_005_LR3_bic.png)| ![](result/super/Canon_005_LR3.png)|
+| ![](test/super/Canon_006_LR3.png) | ![](result/super/Canon_006_LR3_bic.png)| ![](result/super/Canon_006_LR3.png)|
 
 
 ## License
@@ -170,7 +229,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 - Training dataset 
     - [Denoise](https://www.eecs.yorku.ca/~kamel/sidd/dataset.php)
     - [Image Super Resolution](https://drive.google.com/file/d/157bjO1_cFuSd0HWDUuAmcHRJDVyWpOxB/view)
-    - [Image Enhancement](#) ... Updating
+    - [Image Enhancement](https://drive.google.com/file/d/17ZMjo-zwFouxnm_aFM6CUHBwgRrLZqIM/view)
 
 ## Citation
 ```
