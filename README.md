@@ -123,7 +123,7 @@ optional arguments:
                     --scale_factor SCALE_FACTOR
 ```
 
-Download the weight [here](#) and put it to the ```weights/super``` folder.
+Download the weight [here](https://drive.google.com/file/d/12uvDFw5Fs6KX6IQmpEfL9dk8muSzYHRx/view?usp=sharing) and put it to the ```weights/super``` folder.
 ```
 usage: test_super.py [-h] [--test_path TEST_PATH] [--gpu GPU]
                      [--checkpoint_filepath CHECKPOINT_FILEPATH]
