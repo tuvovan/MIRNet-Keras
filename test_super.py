@@ -56,6 +56,6 @@ if __name__ == "__main__":
 
     model = Model(inputs=x, outputs=hr)
     model.summary()
-    model.load_weights(config.checkpoint_filepath + '48_28.70.h5')
+    model.load_weights(config.checkpoint_filepath + 'MIR_super.h5')
 
     run(config, model)
