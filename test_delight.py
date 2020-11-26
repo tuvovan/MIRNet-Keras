@@ -45,6 +45,6 @@ if __name__ == "__main__":
     out = mri_x.main_model(x)
     model = Model(inputs=x, outputs=out)
     model.summary()
-    model.load_weights(config.checkpoint_filepath + '37_19.16.h5')
+    model.load_weights(config.checkpoint_filepath + 'MIR_Delight.h5')
 
     run(config, model)
