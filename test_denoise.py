@@ -48,6 +48,6 @@ if __name__ == "__main__":
     out = mri_x.main_model(x)
     model = Model(inputs=x, outputs=out)
     model.summary()
-    model.load_weights(config.checkpoint_filepath + 'denoise.h5')
+    model.load_weights(config.checkpoint_filepath + 'MIR_Denoise.h5')
 
     run(config, model)
