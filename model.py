@@ -79,7 +79,7 @@ class MIRNet(Model):
         upper_branch = Conv2D(c, kernel_size=(1,1))(X)
         upper_branch = ReLU()(upper_branch)
 
-        upper_branch = Conv2D(c, kernel_size=(3,3), padding='same')(X)
+        upper_branch = Conv2D(c, kernel_size=(3,3), padding='same')(upper_branch)
         upper_branch = ReLU()(upper_branch)
         upper_branch = MaxPooling2D()(upper_branch)
         upper_branch = Conv2D(c * 2, kernel_size=(1,1))(upper_branch)
@@ -94,7 +94,7 @@ class MIRNet(Model):
         upper_branch = Conv2D(c, kernel_size=(1,1))(X)
         upper_branch = ReLU()(upper_branch)
 
-        upper_branch = Conv2D(c, kernel_size=(3,3), padding='same')(X)
+        upper_branch = Conv2D(c, kernel_size=(3,3), padding='same')(upper_branch)
         upper_branch = ReLU()(upper_branch)
         upper_branch = UpSampling2D()(upper_branch)
         upper_branch = Conv2D(c // 2, kernel_size=(1,1))(upper_branch)
@@ -127,7 +127,7 @@ class MIRNet(Model):
         level3_DAU_2 = self.UpSampling(self.UpSampling(self.DAU(level3_SKFF)))
 
         # SKFF 2
-        SKFF_ = self.SKFF(level1_DAU_2, level3_DAU_2, level3_DAU_2)
+        SKFF_ = self.SKFF(level1_DAU_2, level2_DAU_2, level3_DAU_2)
 
         conv = Conv2D(self.channels, kernel_size=(3,3), padding='same')(SKFF_)
 
